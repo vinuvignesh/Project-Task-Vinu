@@ -1,0 +1,40 @@
+<div class="list-contact-container">
+  <h2>Contact List</h2>
+  <button class="new-contact-button btn" (click)="addDetails()">Add New Contact</button>
+  <table>
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Country</th>
+        <th>Postal Code</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of contacts">
+        <td>{{item.firstName}}</td>
+        <td>{{item.lastName}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.phoneNumber}}</td>
+        <td>{{item.address}}</td>
+        <td>{{item.city}}</td>
+        <td>{{item.state}}</td>
+        <td>{{item.country}}</td>
+        <td>{{item.postalCode}}</td>
+        <td>
+          <button type="button" class="btn btn-info" (click)="editContact(item.id)">Edit</button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger" (click)="deleteContact(item.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

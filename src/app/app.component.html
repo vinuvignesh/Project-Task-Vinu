@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #121E2E; color: white;">
+  <div class="container-fluid">
+    <span class="navbar-brand" style="color: white;">Contact-Dairy</span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon" style="background-color: white;"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav" >
+        <ng-container *ngIf="!authService.isAuthenticated(); else loggedIn">
+          <button class="btn btn-info nav-link login" [routerLink]="['/login']" style="color: white;">Login</button>
+        </ng-container>
+        <ng-template #loggedIn>
+          <a class="nav-link" [routerLink]="['/home']" style="color: white;">Home</a>
+          <a class="nav-link" [routerLink]="['/list']" style="color: white;">Contact List</a>
+          <a class="btn btn-info nav-link logout" (click)="logout()" style="color: white;">Logout</a>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>

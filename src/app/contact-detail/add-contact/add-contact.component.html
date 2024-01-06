@@ -1,0 +1,88 @@
+<div class="add-contact-container">
+  <h2>Add Contact</h2>
+  <form id="addContactForm" #addForm="ngForm" novalidate>
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" required maxlength="15" pattern="[a-zA-Z ]*" [(ngModel)]="contact.firstName">
+      <div *ngIf="addForm.controls['firstName'].invalid && (addForm.controls['firstName'].dirty || addForm.controls['firstName'].touched)" style="color: red;">
+        <div *ngIf="addForm.controls['firstName'].hasError('required')">First Name is required.</div>
+        <div *ngIf="addForm.controls['firstName'].hasError('pattern')">Only letters and spaces are allowed.</div>
+        <div *ngIf="addForm.controls['firstName'].hasError('maxlength')">Maximum 15 characters allowed.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" required maxlength="15" pattern="[a-zA-Z ]*" [(ngModel)]="contact.lastName">
+      <div *ngIf="addForm.controls['lastName'].invalid && (addForm.controls['lastName'].dirty || addForm.controls['lastName'].touched)" style="color: red;">
+        <div *ngIf="addForm.controls['lastName'].hasError('required')">Last Name is required.</div>
+        <div *ngIf="addForm.controls['lastName'].hasError('pattern')">Only letters and spaces are allowed.</div>
+        <div *ngIf="addForm.controls['lastName'].hasError('maxlength')">Maximum 15 characters allowed.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" [(ngModel)]="contact.email" >
+      <div *ngIf="addForm.controls['email'].invalid && (addForm.controls['email'].dirty || addForm.controls['email'].touched)" style="color: red;">
+        <div *ngIf="addForm.controls['email'].hasError('required')">Email is required.</div>
+        <div *ngIf="addForm.controls['email'].hasError('pattern')">Please enter a valid email address.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="phoneNumber">Phone Number:</label>
+      <input type="number" id="phoneNumber" name="phoneNumber" required 
+             pattern="[0-9]{10}" minlength="10" maxlength="10" [(ngModel)]="contact.phoneNumber">
+      <div *ngIf="addForm.controls['phoneNumber'].invalid && (addForm.controls['phoneNumber'].dirty || addForm.controls['phoneNumber'].touched)" style="color: red;">
+        <div *ngIf="addForm.controls['phoneNumber'].hasError('required')">Phone Number is required.</div>
+        <div *ngIf="addForm.controls['phoneNumber'].hasError('pattern')">Please enter a valid 10-digit phone number.</div>
+        <div *ngIf="addForm.controls['phoneNumber'].hasError('minlength') || addForm.controls['phoneNumber'].hasError('maxlength')">Phone Number should be 10 digits.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="address" required maxlength="30" pattern="[a-zA-Z ]*" [(ngModel)]="contact.address">
+      <div *ngIf="addForm.controls['address'].invalid && (addForm.controls['address'].dirty || addForm.controls['address'].touched)" style="color: red;">
+        <div *ngIf="addForm.controls['address'].hasError('required')">Address is required.</div>
+        <div *ngIf="addForm.controls['address'].hasError('pattern')">Only letters and spaces are allowed.</div>
+        <div *ngIf="addForm.controls['address'].hasError('maxlength')">Maximum 30 characters allowed.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="city">City:</label>
+      <input type="text" id="city" name="city" required maxlength="15" pattern="[a-zA-Z ]*" [(ngModel)]="contact.city">
+      <div *ngIf="addForm.controls['city'].invalid && (addForm.controls['city'].dirty || addForm.controls['city'].touched)" style="color: red;">
+        <div *ngIf="addForm.controls['city'].hasError('required')">City is required.</div>
+        <div *ngIf="addForm.controls['city'].hasError('pattern')">Only letters and spaces are allowed.</div>
+        <div *ngIf="addForm.controls['city'].hasError('maxlength')">Maximum 15 characters allowed.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="state">State:</label>
+      <input type="text" id="state" name="state" required maxlength="15" pattern="[a-zA-Z ]*" [(ngModel)]="contact.state">
+      <div *ngIf="addForm.controls['state'].invalid && (addForm.controls['state'].dirty || addForm.controls['state'].touched)" style="color: red;">
+        <div *ngIf="addForm.controls['state'].hasError('required')">State is required.</div>
+        <div *ngIf="addForm.controls['state'].hasError('pattern')">Only letters and spaces are allowed.</div>
+        <div *ngIf="addForm.controls['state'].hasError('maxlength')">Maximum 15 characters allowed.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="country">Country:</label>
+      <input type="text" id="country" name="country" required maxlength="15" pattern="[a-zA-Z ]*" [(ngModel)]="contact.country">
+      <div *ngIf="addForm.controls['country'].invalid && (addForm.controls['country'].dirty || addForm.controls['country'].touched)" style="color: red;">
+        <div *ngIf="addForm.controls['country'].hasError('required')">Country is required.</div>
+        <div *ngIf="addForm.controls['country'].hasError('pattern')">Only letters and spaces are allowed.</div>
+        <div *ngIf="addForm.controls['country'].hasError('maxlength')">Maximum 15 characters allowed.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="postalCode">Postal Code:</label>
+      <input type="number" id="postalCode" name="postalCode" required 
+             pattern="[6]{6}" minlength="6" maxlength="6" [(ngModel)]="contact.postalCode" >
+      <div *ngIf="addForm.controls['postalCode'].invalid && (addForm.controls['postalCode'].dirty || addForm.controls['postalCode'].touched)"style="color: red;">
+        <div *ngIf="addForm.controls['postalCode'].hasError('required')">Postal Code is required.</div>
+        <div *ngIf="addForm.controls['postalCode'].hasError('pattern')">Please enter a valid 6-digit postal code.</div>
+        <div *ngIf="addForm.controls['postalCode'].hasError('minlength') || addForm.controls['postalCode'].hasError('maxlength')">Postal Code should be 6 digits.</div>
+      </div>
+    </div>
+    <button type="submit" [disabled]="addForm.invalid" (click)="addContact()">Add Contact</button>
+  </form>
+</div>

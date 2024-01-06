@@ -1,0 +1,15 @@
+a{
+ cursor:pointer;
+}
+.navbar-heading {
+    font-size: 18px;
+    margin-left: auto; 
+    cursor:pointer;
+  }
+  .login{
+    margin-left:2300%;
+  }
+
+  .logout{
+    margin-left:1100px;
+  }
