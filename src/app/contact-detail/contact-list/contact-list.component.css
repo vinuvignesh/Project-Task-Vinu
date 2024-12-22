@@ -1,40 +1,63 @@
 .list-contact-container {
-  max-width: 800px;
-  margin-left:20px;
+  max-width: 1200px;
+  margin: auto;
 }
 
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px; /* Adjust spacing as needed */
+.table th, .table td {
+  vertical-align: middle;
+}
+
+.table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.new-contact-button i,
+.btn i {
+  font-size: 0.9rem; /* Smaller icon size for all buttons */
 }
 
 .new-contact-button {
-  background-color: #436780;
-  color: white;
-  padding-left: 10px;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
+  padding: 6px 12px; /* Adjust button padding for smaller icon size */
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
+.small-icon {
+  font-size: 0.9rem; /* Apply to edit and delete buttons as well */
 }
 
-th, td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: left;
+.search-container .input-group {
+  display: flex;
+  align-items: center;
+  width: 100%; /* Ensure the input group doesn't overflow */
 }
 
-th {
-  background-color: #6a7c33;
-  color: white;
+.search-input {
+  border-radius: 25px; /* Rounded corners for the input */
+  padding-left: 20px; /* Add padding inside input for better alignment */
+  font-size: 1rem; /* Slightly larger font size for better readability */
+  height: 40px; /* Consistent input height */
+  border: 1px solid black; /* Set border color to black */
 }
 
-tr:hover {
-  background-color: #f5f5f5;
+.search-input:hover {
+  border-color: #007bff; /* Change border color on hover */
+}
+
+.search-container .input-group .btn {
+  border-left: none; /* Remove border between input and button */
+  display: none; /* Hide the button */
+}
+
+.pagination-controls .btn {
+  font-size: 0.9rem;
+  padding: 6px 12px;
+}
+
+.page-numbers .btn.active {
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+}
+
+.page-numbers .btn:hover {
+  background-color: #0056b3;
 }
