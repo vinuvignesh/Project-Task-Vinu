@@ -10,7 +10,6 @@
           <button class="btn btn-info nav-link login" [routerLink]="['/login']" style="color: white;">Login</button>
         </ng-container>
         <ng-template #loggedIn>
-          <a class="nav-link" [routerLink]="['/home']" style="color: white;">Home</a>
           <a class="nav-link" [routerLink]="['/list']" style="color: white;">Contact List</a>
           <a class="btn btn-info nav-link logout" (click)="logout()" style="color: white;">Logout</a>
         </ng-template>

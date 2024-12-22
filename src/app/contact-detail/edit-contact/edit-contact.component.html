@@ -1,86 +1,38 @@
 <div class="edit-contact-container">
-    <h2>Edit Contact</h2>
-    <form id="editContactForm" #editForm="ngForm" novalidate>
-      <div class="form-group">
-        <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" name="firstName" required maxlength="15" pattern="[a-zA-Z ]*" [(ngModel)]="contact.firstName">
-        <div *ngIf="editForm.controls['firstName'].invalid && (editForm.controls['firstName'].dirty || editForm.controls['firstName'].touched)" style="color: red;">
-          <div *ngIf="editForm.controls['firstName'].hasError('required')">First Name is required.</div>
-          <div *ngIf="editForm.controls['firstName'].hasError('pattern')">Only letters and spaces are allowed.</div>
-          <div *ngIf="editForm.controls['firstName'].hasError('maxlength')">Maximum 15 characters allowed.</div>
-        </div>
+  <h2>Edit Contact</h2>
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <div class="form-group" [ngClass]="{'has-error': contactForm.controls['firstName'].invalid && (contactForm.controls['firstName'].dirty || contactForm.controls['firstName'].touched)}">
+      <label for="firstName">First Name: <span class="required">*</span></label>
+      <input type="text" id="firstName" formControlName="firstName">
+      <div *ngIf="contactForm.controls['firstName'].invalid && (contactForm.controls['firstName'].dirty || contactForm.controls['firstName'].touched)" class="error">
+        First name is required.
       </div>
-      <div class="form-group">
-        <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" name="lastName" required maxlength="15" pattern="[a-zA-Z ]*" [(ngModel)]="contact.lastName">
-        <div *ngIf="editForm.controls['lastName'].invalid && (editForm.controls['lastName'].dirty || editForm.controls['lastName'].touched)" style="color: red;">
-          <div *ngIf="editForm.controls['lastName'].hasError('required')">Last Name is required.</div>
-          <div *ngIf="editForm.controls['lastName'].hasError('pattern')">Only letters and spaces are allowed.</div>
-          <div *ngIf="editForm.controls['lastName'].hasError('maxlength')">Maximum 15 characters allowed.</div>
-        </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error': contactForm.controls['lastName'].invalid && (contactForm.controls['lastName'].dirty || contactForm.controls['lastName'].touched)}">
+      <label for="lastName">Last Name: <span class="required">*</span></label>
+      <input type="text" id="lastName" formControlName="lastName">
+      <div *ngIf="contactForm.controls['lastName'].invalid && (contactForm.controls['lastName'].dirty || contactForm.controls['lastName'].touched)" class="error">
+        Last name is required.
       </div>
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" [(ngModel)]="contact.email" >
-        <div *ngIf="editForm.controls['email'].invalid && (editForm.controls['email'].dirty || editForm.controls['email'].touched)" style="color: red;">
-          <div *ngIf="editForm.controls['email'].hasError('required')">Email is required.</div>
-          <div *ngIf="editForm.controls['email'].hasError('pattern')">Please enter a valid email address.</div>
-        </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error': contactForm.controls['email'].invalid && (contactForm.controls['email'].dirty || contactForm.controls['email'].touched)}">
+      <label for="email">Email:</label>
+      <input type="email" id="email" formControlName="email">
+      <div *ngIf="contactForm.controls['email'].invalid && (contactForm.controls['email'].dirty || contactForm.controls['email'].touched)" class="error">
+        Please enter a valid email.
       </div>
-      <div class="form-group">
-        <label for="phoneNumber">Phone Number:</label>
-        <input type="text" id="phoneNumber" name="phoneNumber" required maxlength="15" pattern="[a-zA-Z ]*" [(ngModel)]="contact.phoneNumber">
-        <div *ngIf="editForm.controls['phoneNumber'].invalid && (editForm.controls['phoneNumber'].dirty || editForm.controls['phoneNumber'].touched)" style="color: red;">
-          <div *ngIf="editForm.controls['phoneNumber'].hasError('required')">Phone Number is required.</div>
-          <div *ngIf="editForm.controls['phoneNumber'].hasError('pattern')">Only letters and spaces are allowed.</div>
-          <div *ngIf="editForm.controls['phoneNumber'].hasError('maxlength')">Maximum 15 characters allowed.</div>
-        </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error': contactForm.controls['phoneNumber'].invalid && (contactForm.controls['phoneNumber'].dirty || contactForm.controls['phoneNumber'].touched)}">
+      <label for="phoneNumber">Phone Number:</label>
+      <input type="tel" id="phoneNumber" formControlName="phoneNumber" maxlength="10" minlength="10">
+      <div *ngIf="contactForm.controls['phoneNumber'].invalid && (contactForm.controls['phoneNumber'].dirty || contactForm.controls['phoneNumber'].touched)" class="error">
+        Please enter a valid 10-digit phone number (only numbers allowed).
       </div>
-      <div class="form-group">
-        <label for="address">Address:</label>
-        <input type="text" id="address" name="address" required maxlength="30" pattern="[a-zA-Z ]*" [(ngModel)]="contact.address">
-        <div *ngIf="editForm.controls['address'].invalid && (editForm.controls['address'].dirty || editForm.controls['address'].touched)" style="color: red;">
-          <div *ngIf="editForm.controls['address'].hasError('required')">Address is required.</div>
-          <div *ngIf="editForm.controls['address'].hasError('pattern')">Only letters and spaces are allowed.</div>
-          <div *ngIf="editForm.controls['address'].hasError('maxlength')">Maximum 30 characters allowed.</div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="city">City:</label>
-        <input type="text" id="city" name="city" required maxlength="15" pattern="[a-zA-Z ]*" [(ngModel)]="contact.city">
-        <div *ngIf="editForm.controls['city'].invalid && (editForm.controls['city'].dirty || editForm.controls['city'].touched)" style="color: red;">
-          <div *ngIf="editForm.controls['city'].hasError('required')">City is required.</div>
-          <div *ngIf="editForm.controls['city'].hasError('pattern')">Only letters and spaces are allowed.</div>
-          <div *ngIf="editForm.controls['city'].hasError('maxlength')">Maximum 15 characters allowed.</div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="state">State:</label>
-        <input type="text" id="state" name="state" required maxlength="15" pattern="[a-zA-Z ]*" [(ngModel)]="contact.state">
-        <div *ngIf="editForm.controls['state'].invalid && (editForm.controls['state'].dirty || editForm.controls['state'].touched)" style="color: red;">
-          <div *ngIf="editForm.controls['state'].hasError('required')">State is required.</div>
-          <div *ngIf="editForm.controls['state'].hasError('pattern')">Only letters and spaces are allowed.</div>
-          <div *ngIf="editForm.controls['state'].hasError('maxlength')">Maximum 15 characters allowed.</div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="country">Country:</label>
-        <input type="text" id="country" name="country" required maxlength="15" pattern="[a-zA-Z ]*" [(ngModel)]="contact.country">
-        <div *ngIf="editForm.controls['country'].invalid && (editForm.controls['country'].dirty || editForm.controls['country'].touched)" style="color: red;">
-          <div *ngIf="editForm.controls['country'].hasError('required')">Country is required.</div>
-          <div *ngIf="editForm.controls['country'].hasError('pattern')">Only letters and spaces are allowed.</div>
-          <div *ngIf="editForm.controls['country'].hasError('maxlength')">Maximum 15 characters allowed.</div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="postalCode">Postal Code:</label>
-        <input type="text" id="postalCode" name="postalCode" required pattern="[0-9]{6}" minlength="6" maxlength="6" [(ngModel)]="contact.postalCode" style="color: red;">
-        <div *ngIf="editForm.controls['postalCode'].invalid && (editForm.controls['postalCode'].dirty || editForm.controls['postalCode'].touched)">
-          <div *ngIf="editForm.controls['postalCode'].hasError('required')">Postal Code is required.</div>
-          <div *ngIf="editForm.controls['postalCode'].hasError('pattern')">Please enter a valid 6-digit postal code.</div>
-          <div *ngIf="editForm.controls['postalCode'].hasError('minlength') || editForm.controls['postalCode'].hasError('maxlength')">Postal Code should be 6 digits.</div>
-        </div>
-      </div>
-      <button type="submit" [disabled]="editForm.invalid" (click)="updateContact()">Update Contact</button>
-    </form>
-  </div>
+    </div>
+
+    <button type="submit" [disabled]="contactForm.invalid">Update Contact</button>
+  </form>
+</div>

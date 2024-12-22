@@ -15,7 +15,7 @@ export class LoginComponent {
   login() {
     const loginData = {
       username: "admin",
-      password: "@dmiN123",
+      password: "@dmin123",
     };
 
     this.authService.login(loginData).subscribe(

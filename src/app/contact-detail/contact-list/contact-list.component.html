@@ -1,40 +1,86 @@
-<div class="list-contact-container">
-  <h2>Contact List</h2>
-  <button class="new-contact-button btn" (click)="addDetails()">Add New Contact</button>
-  <table>
-    <thead>
+<div class="list-contact-container container mt-5">
+  <h2 class="text-center mb-4">Contact List</h2>
+
+  <!-- Search Bar -->
+  <div class="search-container mb-3 d-flex justify-content-between align-items-center">
+    <!-- Search Bar -->
+    <div class="input-group" style="max-width: 300px;">
+      <input
+        type="text"
+        class="form-control search-input"
+        placeholder="Search contacts..."
+        [(ngModel)]="searchText"
+        (ngModelChange)="searchContacts()"
+      />
+    </div>
+  
+    <!-- Add Contact Button and Sort Icon -->
+    <div class="d-flex align-items-center">
+      <!-- Add Contact Button with 2px margin -->
+      <button class="new-contact-button btn btn-primary" style="margin-right: 2px;" (click)="addDetails()">
+        <i class="fas fa-plus mr-2"></i>
+        <span style="font-weight: normal;">New Contact</span>
+      </button>
+    </div>
+  </div>
+
+  <table class="table table-striped table-bordered shadow-sm">
+    <thead class="thead-dark">
       <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Phone Number</th>
-        <th>Address</th>
-        <th>City</th>
-        <th>State</th>
-        <th>Country</th>
-        <th>Postal Code</th>
+        <th (click)="changeSort('firstName')">
+          First Name
+          <i *ngIf="sortColumn === 'firstName'" [class]="sortDirection === 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'"></i>
+        </th>
+        <th (click)="changeSort('lastName')">
+          Last Name
+          <i *ngIf="sortColumn === 'lastName'" [class]="sortDirection === 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'"></i>
+        </th>
+        <th (click)="changeSort('email')">
+          Email
+          <i *ngIf="sortColumn === 'email'" [class]="sortDirection === 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'"></i>
+        </th>
+        <th (click)="changeSort('phoneNumber')">
+          Phone Number
+          <i *ngIf="sortColumn === 'phoneNumber'" [class]="sortDirection === 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'"></i>
+        </th>
         <th>Edit</th>
         <th>Delete</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of contacts">
+      <tr *ngFor="let item of filteredContacts">
         <td>{{item.firstName}}</td>
         <td>{{item.lastName}}</td>
         <td>{{item.email}}</td>
         <td>{{item.phoneNumber}}</td>
-        <td>{{item.address}}</td>
-        <td>{{item.city}}</td>
-        <td>{{item.state}}</td>
-        <td>{{item.country}}</td>
-        <td>{{item.postalCode}}</td>
         <td>
-          <button type="button" class="btn btn-info" (click)="editContact(item.id)">Edit</button>
+          <button type="button" class="btn btn-sm" (click)="editContact(item.id)">
+            <i class="fas fa-edit small-icon"></i>
+          </button>
         </td>
         <td>
-          <button type="button" class="btn btn-danger" (click)="deleteContact(item.id)">Delete</button>
+          <button type="button" class="btn btn-sm" (click)="deleteContact(item.id)">
+            <i class="fas fa-trash-alt small-icon"></i>
+          </button>
         </td>
+      </tr>
+      <tr *ngIf="filteredContacts.length === 0">
+        <td colspan="6" class="text-center">No results found</td>
       </tr>
     </tbody>
   </table>
+
+  <!-- Pagination Controls -->
+  <div class="pagination-controls d-flex justify-content-between">
+    <button class="btn btn-info" (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+    <div class="page-numbers">
+      <button *ngFor="let page of [].constructor(getTotalPages()); let i = index"
+              class="btn btn-link" 
+              (click)="goToPage(i + 1)"
+              [class.active]="currentPage === (i + 1)">
+        {{ i + 1 }}
+      </button>
+    </div>
+    <button class="btn btn-info" (click)="nextPage()" [disabled]="(currentPage * pageSize) >= totalRecords">Next</button>
+  </div>
 </div>
