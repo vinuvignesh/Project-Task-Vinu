@@ -1,6 +1,5 @@
-// contact.service.ts
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { contact } from "./contact-detail.model";
 
@@ -8,7 +7,6 @@ import { contact } from "./contact-detail.model";
   providedIn: "root",
 })
 export class ContactService {
-  contactList: contact[] = [];
   private apiUrl = "https://localhost:7264/api/Contacts";
 
   constructor(private http: HttpClient) {}
@@ -22,12 +20,17 @@ export class ContactService {
   }
 
   addContact(contact: contact): Observable<contact> {
-    return this.http.post<contact>(this.apiUrl, contact);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.post<contact>(this.apiUrl, contact, { headers });
   }
 
-  updateContact(id: number, contact: contact): Observable<contact> {
-    return this.http.put<contact>(`${this.apiUrl}/${id}`, contact);
+  updateContact(id: any, data: any): Observable<contact> {
+    return this.http.put<contact>(`${this.apiUrl}/${id}`, data);
   }
+  
 
   deleteContact(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
